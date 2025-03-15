@@ -145,7 +145,7 @@ function App() {
     setCalculationResult({
       volumeWeight,
       actualWeight: weightValue,
-      shippingCost: Math.round(shippingCost),
+      shippingCost: parseFloat(shippingCost.toFixed(2)),
       calculationType,
       dimensions: { width, length, height },
       customerLevel: activeTab === "company" ? customerLevel : "N/A",
@@ -697,7 +697,11 @@ function App() {
               <div className="text-xl sm:text-2xl font-bold text-purple-800">
                 ค่าขนส่งทั้งหมด:{" "}
                 <span className="text-pink-600 bg-white px-2 py-1 rounded-md inline-block mt-2 sm:mt-0">
-                  {calculationResult.shippingCost.toLocaleString()} บาท
+                  {calculationResult.shippingCost.toLocaleString("th-TH", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{" "}
+                  บาท
                 </span>
               </div>
               <div className="text-sm text-gray-600 mt-2">
@@ -832,7 +836,7 @@ function App() {
         <div className="mt-6 sm:mt-8 border-t border-gray-200 pt-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
             <a
-              href="tel:02XXXXXXX"
+              href="tel:0800038383"
               className="flex items-center justify-center bg-white p-2 rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 text-gray-700"
             >
               <svg
